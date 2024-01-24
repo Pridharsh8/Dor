@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            transition: transform 0.2s, opacity 0.5s;
+        }
+    </style>
+    <title>Cursor Sparkle Effect</title>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('mousemove', function (e) {
+                createSparkle(e.clientX, e.clientY);
+            });
+
+            function createSparkle(x, y) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.top = y + 'px';
+                sparkle.style.left = x + 'px';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.style.transform = 'scale(2)';
+                    sparkle.style.opacity = '0';
+                }, 10);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 700);
+            }
+        });
+    </script>
+</body>
+</html>
